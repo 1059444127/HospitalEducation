@@ -1,0 +1,274 @@
+﻿@using EATMVC.Model
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>主页</title>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/MyJs/bootstrap-2.3.3/js/bootstrap.min.js"></script>
+    <link href="~/Scripts/MyJs/bootstrap-2.3.3/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Main/Index.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var platform;
+        function IsShowModal(type) {
+            platform = type;
+            if ($("select[id=" + type + "] option").size() == 1) {
+                $("#" + type).css("display", "block");
+                QueDing();
+            } else {
+                ShowModal(type);
+            }
+        }
+        function ShowModal(type) { 
+            //$("select").not("[id=" + type + "]").hide();
+            $("select[id="+type+"]").show();
+            $("#" + type).css("display","block");
+            $('#myModal').modal('show');
+        }
+
+        function QueDing() {
+            var type;
+            $("select").each(function (i) {
+                if ($(this).css("display") == "block") {
+                    type = $(this).val();
+                }
+            }); 
+            if (platform == "GP") {
+                location.href = "/GP_System/Frame.aspx?role=" + type;
+            } else if(platform=="QK"){
+                location.href = "/QuanKeSystem/QKFrame/Index?role=" + type;
+                @*location.href = "@Url.Action("Index", new { controller="QKFrame",area="QuanKeSystem"})";*@
+            } else if (platform == "SX") {
+                location.href = "/ShiXiSystem/SXFrame/Index?role=" + type;
+            } else if (platform == "JX") {
+                location.href = "/JinXiuSystem/JXFrame/Index?role=" + type;
+            } else {
+               location.href = "/JiXuYiXueSystem/JXYXFrame/Index?role=" + type;
+            } 
+        }
+    </script>
+</head>
+<body>
+    @{
+
+    List<string> PlatformRoleNameList = new List<string>();
+            List<string> PlatformList = new List<string>();
+                    foreach (var item in ViewBag.RoleInfo)
+                    {
+                    string PlatformRoleNameStr = item.PlatformName + "_" + item.RoleName;
+                    PlatformRoleNameList.Add(PlatformRoleNameStr);
+                    PlatformList.Add(item.PlatformName);
+                    }
+                    }
+                    <!-- 模态框（Modal） -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body" style="margin: 0 auto;text-align: center">
+                                    <table style="text-align: center;margin: 0 auto">
+                                        <tr>
+                                            <td>
+                                                <select id="GP" name="GP" style="display:none">
+                                                    @foreach (var item in PlatformRoleNameList)
+                                                    {
+
+                                                    if (item.Split('_')[0] == "GP")
+                                                    {
+                                                    if (item.Split('_')[1] == "students")
+                                                    {
+                                                    <option value="@item.Split('_')[1] ">学员</option>
+                                                    }
+                                                    else if (item.Split('_')[1] == "teachers")
+                                                    {
+                                                    <option value="@item.Split('_')[1] ">指导医师</option>
+                                                    }
+                                                    else if (item.Split('_')[1] == "managers")
+                                                    {
+                                                    <option value="@item.Split('_')[1] ">管理员</option>
+                                                    }
+                                                    }
+
+                                                    }
+                                                </select>
+                                                @*<select id="QK" name="QK" style="display:none">
+                                                    @foreach (var item in PlatformRoleNameList)
+                                                    {
+                                                        if (item.Split('_')[0] == "QK")
+                                                        {
+                                                            if (item.Split('_')[1] == "students")
+                                                            {
+                                                                <option value="@item.Split('_')[1] ">学员</option>
+                                                            }
+                                                            else if (item.Split('_')[1] == "teachers")
+                                                            {
+                                                                <option value="@item.Split('_')[1] ">指导医师</option>
+                                                            }
+                                                            else if (item.Split('_')[1] == "managers")
+                                                            {
+                                                                <option value="@item.Split('_')[1] ">管理员</option>
+                                                            }
+                                                        }
+
+                                                    }
+                                                </select>*@
+                                                <select id="SX" name="SX" style="display:none">
+                                                    @foreach (var item in PlatformRoleNameList)
+                                                    {
+                                                        if (item.Split('_')[0] == "SX")
+                                                        {
+                                                            if (item.Split('_')[1] == "students")
+                                                            {
+                                                                <option value="@item.Split('_')[1] ">学员</option>
+                                                            }
+                                                            else if (item.Split('_')[1] == "teachers")
+                                                            {
+                                                                <option value="@item.Split('_')[1] ">指导医师</option>
+                                                            }
+                                                            else if (item.Split('_')[1] == "managers")
+                                                            {
+                                                                <option value="@item.Split('_')[1] ">管理员</option>
+                                                            }
+                                                        }
+
+                                                    }
+                                                </select>
+                                                <select id="JX" name="JX" style="display:none">
+                                                    @foreach (var item in PlatformRoleNameList)
+                                                    {
+                                                        if (item.Split('_')[0] == "JX")
+                                                        {
+                                                            if (item.Split('_')[1] == "students")
+                                                            {
+                                                                <option value="@item.Split('_')[1] ">学员</option>
+                                                            }
+                                                            else if (item.Split('_')[1] == "teachers")
+                                                            {
+                                                                <option value="@item.Split('_')[1] ">指导医师</option>
+                                                            }
+                                                            else if (item.Split('_')[1] == "managers")
+                                                            {
+                                                                <option value="@item.Split('_')[1] ">管理员</option>
+                                                            }
+                                                        }
+
+                                                    }
+                                                </select>
+                                                <select id="JXYX" name="JXYX" style="display:none">
+                                                    @foreach (var item in PlatformRoleNameList)
+                                                    {
+                                                        if (item.Split('_')[0] == "JXYX")
+                                                        {
+                                                            if (item.Split('_')[1] == "students")
+                                                            {
+                                                                <option value="@item.Split('_')[1] ">学员</option>
+                                                            }
+                                                            else if (item.Split('_')[1] == "teachers")
+                                                            {
+                                                                <option value="@item.Split('_')[1] ">指导医师</option>
+                                                            }
+                                                            else if (item.Split('_')[1] == "managers")
+                                                            {
+                                                                <option value="@item.Split('_')[1] ">管理员</option>
+                                                            }
+                                                        }
+
+                                                    }
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="button" value="关闭" id="close" name="close" class="btn btn-default" data-dismiss="modal" />
+                                                <input type="button" value="确定" id="confirm" name="confirm" class="btn btn-success" onclick="QueDing()" />
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <div class="main">
+                        <div class="top">
+                            <div class="top_left">
+                                <img alt="" src="/index/images/tubiao3.png" style="width: 100px; height: 100px;" />
+                            </div>
+                            <div class="top_right">
+                                @ViewBag.HospitalName<span style="font-size:25pt;font-family:LiSu">&nbsp;科技教育与培训管理平台</span>
+                            </div>
+                        </div>
+                        <div class="center">
+                            <div class="center_left">
+                                <img alt="" src="/images/sys/yiliao1.jpg" style=" height:399px;width:100%;" />
+                            </div>
+                            <div class="center_right">
+                                <div style="font-size: 20pt; color: white; font-family:黑体;text-align:center;padding-top:20px;">
+                                    <span style="font-size:20pt;font-family:LiSu">欢迎</span>@ViewBag.RealName<span style="font-size:20pt;font-family:LiSu">先生/女士</span>
+                                </div>
+                                <div style="padding-top:10px;text-align:center">
+                                    <div style="padding-top: 25px; text-align: center">
+
+                                        @if (PlatformList.Contains("GP"))
+                                        {
+                                        <input id="GPSystem" name="GPSystem" onclick="IsShowModal('GP')" type="button" class="btn btn-success" value="住院医师规范化培训管理 >>" style="width: 80%; height: 50px; font-size: 18pt;" />
+                                        }
+                                        else
+                                        {
+                                        <input id="GPSystem" name="GPSystem" type="button" class="btn btn-default" value="住院医师规范化培训管理 >>" style="width: 80%; height: 50px; font-size: 18pt;" disabled="disabled" />
+                                        }
+
+                                    </div>
+                                    @*<div style="padding-top:16px;text-align:center">
+                                        @if (PlatformList.Contains("QK"))
+                                        {
+                                        <input type="button" class="btn btn-success" onclick="IsShowModal('QK')" value="全科医生规范化培训管理 >>" style="width: 80%; height: 50px; font-size: 18pt;" />
+                                        }
+                                        else
+                                        {
+                                        <input type="button" class="btn btn-default" value="全科医生规范化培训管理 >>" style="width: 80%; height: 50px; font-size: 18pt;" disabled="disabled" />
+                                        }
+                                    </div>*@
+                                    <div style="padding-top:16px;text-align:center">
+                                        @if (PlatformList.Contains("SX"))
+                                        {
+                                        <input type="button" class="btn btn-success" onclick="IsShowModal('SX')" value="实习生教育培训管理 >>" style="width: 80%; height: 50px; font-size: 18pt;" />
+                                        }
+                                        else
+                                        {
+                                        <input type="button" class="btn btn-default" value="实习生教育培训管理 >>" style="width: 80%; height: 50px; font-size: 18pt;" disabled="disabled" />
+                                        }
+                                    </div>
+                                    <div style="padding-top:16px;text-align:center">
+                                        @if (PlatformList.Contains("JX"))
+                                        {
+                                        <input type="button" class="btn btn-success" onclick="IsShowModal('JX')" value="进修生教育培训管理 >>" style="width: 80%; height: 50px; font-size: 18pt;" />
+                                        }
+                                        else
+                                        {
+                                        <input type="button" class="btn btn-default" value="进修生教育培训管理 >>" style="width: 80%; height: 50px; font-size: 18pt;" disabled="disabled" />
+                                        }
+                                    </div>
+                                    <div style="padding-top:16px;text-align:center">
+                                        @if (PlatformList.Contains("JXYX"))
+                                        {
+                                        <input type="button" class="btn btn-success" onclick="IsShowModal('JXYX')" value="继续医学教育管理 >>" style="width: 80%; height: 50px; font-size: 18pt;" />
+                                        }
+                                        else
+                                        {
+                                        <input type="button" class="btn btn-default" value="继续医学教育管理 >>" style="width: 80%; height: 50px; font-size: 18pt;" disabled="disabled" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+</body>
+</html>

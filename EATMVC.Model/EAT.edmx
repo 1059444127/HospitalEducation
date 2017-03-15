@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EducationAndTrainingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="EducationAndTrainingModelStoreContainer">
+          <EntitySet Name="GP_Login" EntityType="EducationAndTrainingModel.Store.GP_Login" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GP_LoginRoleInfo" EntityType="EducationAndTrainingModel.Store.GP_LoginRoleInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RoleInfo" EntityType="EducationAndTrainingModel.Store.RoleInfo" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="GP_Login">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="id" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="real_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="training_base_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="training_base_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginState" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegisterDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="professional_base_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="professional_base_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="dept_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="dept_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GP_LoginRoleInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="GP_LoginId" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoleInfoId" Type="int" />
+          <Property Name="GP_LoginName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RoleInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PlatformName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sort" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EducationAndTrainingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EducationAndTrainingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GP_Login" EntityType="EducationAndTrainingModel.GP_Login" />
+          <EntitySet Name="GP_LoginRoleInfo" EntityType="EducationAndTrainingModel.GP_LoginRoleInfo" />
+          <EntitySet Name="RoleInfo" EntityType="EducationAndTrainingModel.RoleInfo" />
+        </EntityContainer>
+        <EntityType Name="GP_Login">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="id" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="password" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="real_name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="training_base_code" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="training_base_name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="type" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LoginState" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RegisterDate" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="professional_base_code" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="professional_base_name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="dept_code" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="dept_name" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GP_LoginRoleInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="GP_LoginId" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="RoleInfoId" />
+          <Property Type="String" Name="GP_LoginName" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RoleInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="PlatformName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RoleName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Sort" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Remark" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EducationAndTrainingModelStoreContainer" CdmEntityContainer="EducationAndTrainingEntities">
+          <EntitySetMapping Name="GP_Login">
+            <EntityTypeMapping TypeName="EducationAndTrainingModel.GP_Login">
+              <MappingFragment StoreEntitySet="GP_Login">
+                <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+                <ScalarProperty Name="dept_code" ColumnName="dept_code" />
+                <ScalarProperty Name="professional_base_name" ColumnName="professional_base_name" />
+                <ScalarProperty Name="professional_base_code" ColumnName="professional_base_code" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="LoginState" ColumnName="LoginState" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="training_base_name" ColumnName="training_base_name" />
+                <ScalarProperty Name="training_base_code" ColumnName="training_base_code" />
+                <ScalarProperty Name="real_name" ColumnName="real_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GP_LoginRoleInfo">
+            <EntityTypeMapping TypeName="EducationAndTrainingModel.GP_LoginRoleInfo">
+              <MappingFragment StoreEntitySet="GP_LoginRoleInfo">
+                <ScalarProperty Name="GP_LoginName" ColumnName="GP_LoginName" />
+                <ScalarProperty Name="RoleInfoId" ColumnName="RoleInfoId" />
+                <ScalarProperty Name="GP_LoginId" ColumnName="GP_LoginId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleInfo">
+            <EntityTypeMapping TypeName="EducationAndTrainingModel.RoleInfo">
+              <MappingFragment StoreEntitySet="RoleInfo">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="PlatformName" ColumnName="PlatformName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
